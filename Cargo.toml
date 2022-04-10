@@ -1,0 +1,20 @@
+[package]
+name = "generator-benchmark"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+criterion = { version = "0.3.5", features = ["real_blackbox", "async_futures"] }
+next-gen = "0.1.1"
+old-next-gen = { package = "next-gen", version = "0.0.10" }
+genawaiter = "0.99.1"
+generator = "0.7.0"
+gen-z = "0.1.0"
+futures = "0.3.21"
+corosensei = "0.1.2"
+
+[[bench]]
+name = "generator-benchmark"
+harness = false
