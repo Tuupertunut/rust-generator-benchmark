@@ -926,47 +926,47 @@ fn criterion_benchmark(c: &mut Criterion) {
     let mut g = c.benchmark_group("generator-benchmark");
     g.sample_size(1000);
 
-    g.bench_function("no generator, just loops", |b| {
+    g.bench_function("00 no generator, just loops", |b| {
         b.iter(|| black_box(&board).possible_regular_moves_loops(black_box(player)))
     });
-    g.bench_function("no generator, just iterators", |b| {
+    g.bench_function("01 no generator, just iterators", |b| {
         b.iter(|| black_box(&board).possible_regular_moves_iterator(black_box(player)))
     });
-    g.bench_function("native rust generator (unstable)", |b| {
+    g.bench_function("02 native rust generator (unstable)", |b| {
         b.iter(|| black_box(&board).possible_regular_moves_native(black_box(player)))
     });
-    g.bench_function("next-gen 0.1.1", |b| {
+    g.bench_function("03 next-gen 0.1.1", |b| {
         b.iter(|| black_box(&board).possible_regular_moves_next_gen(black_box(player)))
     });
-    g.bench_function("next-gen 0.1.1 boxed", |b| {
+    g.bench_function("04 next-gen 0.1.1 boxed", |b| {
         b.iter(|| black_box(&board).possible_regular_moves_next_gen_boxed(black_box(player)))
     });
-    g.bench_function("next-gen 0.0.10", |b| {
+    g.bench_function("05 next-gen 0.0.10", |b| {
         b.iter(|| black_box(&board).possible_regular_moves_old_next_gen(black_box(player)))
     });
-    g.bench_function("next-gen 0.0.10 boxed", |b| {
+    g.bench_function("06 next-gen 0.0.10 boxed", |b| {
         b.iter(|| black_box(&board).possible_regular_moves_old_next_gen_boxed(black_box(player)))
     });
-    g.bench_function("genawaiter stack", |b| {
+    g.bench_function("07 genawaiter stack", |b| {
         b.iter(|| black_box(&board).possible_regular_moves_genawaiter_stack(black_box(player)))
     });
-    g.bench_function("genawaiter rc", |b| {
+    g.bench_function("08 genawaiter rc", |b| {
         b.iter(|| black_box(&board).possible_regular_moves_genawaiter_rc(black_box(player)))
     });
-    g.bench_function("genawaiter sync", |b| {
+    g.bench_function("09 genawaiter sync", |b| {
         b.iter(|| black_box(&board).possible_regular_moves_genawaiter_sync(black_box(player)))
     });
-    g.bench_function("generator-rs local", |b| {
+    g.bench_function("10 generator-rs local", |b| {
         b.iter(|| black_box(&board).possible_regular_moves_generator_local(black_box(player)))
     });
-    g.bench_function("generator-rs", |b| {
+    g.bench_function("11 generator-rs", |b| {
         b.iter(|| black_box(&board).possible_regular_moves_generator(black_box(player)))
     });
-    g.bench_function("gen-z", |b| {
+    g.bench_function("12 gen-z", |b| {
         b.to_async(FuturesExecutor)
             .iter(|| black_box(&board).possible_regular_moves_gen_z(black_box(player)))
     });
-    g.bench_function("corosensei", |b| {
+    g.bench_function("13 corosensei", |b| {
         b.iter(|| black_box(&board).possible_regular_moves_corosensei(black_box(player)))
     });
 }
