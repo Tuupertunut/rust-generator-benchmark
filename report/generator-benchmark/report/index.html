@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>generator-benchmark Summary - Criterion.rs</title>
+    <style type="text/css">
+        body {
+            font: 14px Helvetica Neue;
+            text-rendering: optimizelegibility;
+        }
+
+        .body {
+            width: 960px;
+            margin: auto;
+        }
+
+        a:link {
+            color: #1F78B4;
+            text-decoration: none;
+        }
+
+        h2 {
+            font-size: 36px;
+            font-weight: 300;
+        }
+
+        h3 {
+            font-size: 24px;
+            font-weight: 300;
+        }
+
+        #footer {
+            height: 40px;
+            background: #888;
+            color: white;
+            font-size: larger;
+            font-weight: 300;
+        }
+
+        #footer a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        #footer p {
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <div class="body">
+        <h2>generator-benchmark</h2>
+        <h3>Violin Plot</h3>
+        <a href="violin.svg">
+            <img src="violin.svg" alt="Violin Plot" />
+        </a>
+        <p>This chart shows the relationship between function/parameter and iteration time. The thickness of the shaded
+            region indicates the probability that a measurement of the given function/parameter would take a particular
+            length of time.</p>
+        <section class="plots">
+            <a href="../../generator-benchmark/00 no generator, just loops/report/index.html">
+                <h4>no generator, just loops</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../generator-benchmark/00 no generator, just loops/report/pdf.svg">
+                                <img src="../../generator-benchmark/00 no generator, just loops/report/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../generator-benchmark/00 no generator, just loops/report/regression.svg">
+                                <img src="../../generator-benchmark/00 no generator, just loops/report/regression_small.svg" alt="Regression" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../generator-benchmark/01 no generator, just iterators/report/index.html">
+                <h4>no generator, just iterators</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../generator-benchmark/01 no generator, just iterators/report/pdf.svg">
+                                <img src="../../generator-benchmark/01 no generator, just iterators/report/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../generator-benchmark/01 no generator, just iterators/report/regression.svg">
+                                <img src="../../generator-benchmark/01 no generator, just iterators/report/regression_small.svg" alt="Regression" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../generator-benchmark/02 native rust generator (unstable)/report/index.html">
+                <h4>native rust generator (unstable)</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../generator-benchmark/02 native rust generator (unstable)/report/pdf.svg">
+                                <img src="../../generator-benchmark/02 native rust generator (unstable)/report/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../generator-benchmark/02 native rust generator (unstable)/report/regression.svg">
+                                <img src="../../generator-benchmark/02 native rust generator (unstable)/report/regression_small.svg" alt="Regression" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../generator-benchmark/03 next-gen 0.1.1/report/index.html">
+                <h4>next-gen 0.1.1</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../generator-benchmark/03 next-gen 0.1.1/report/pdf.svg">
+                                <img src="../../generator-benchmark/03 next-gen 0.1.1/report/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../generator-benchmark/03 next-gen 0.1.1/report/regression.svg">
+                                <img src="../../generator-benchmark/03 next-gen 0.1.1/report/regression_small.svg" alt="Regression" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../generator-benchmark/04 next-gen 0.1.1 boxed/report/index.html">
+                <h4>next-gen 0.1.1 boxed</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../generator-benchmark/04 next-gen 0.1.1 boxed/report/pdf.svg">
+                                <img src="../../generator-benchmark/04 next-gen 0.1.1 boxed/report/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../generator-benchmark/04 next-gen 0.1.1 boxed/report/regression.svg">
+                                <img src="../../generator-benchmark/04 next-gen 0.1.1 boxed/report/regression_small.svg" alt="Regression" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../generator-benchmark/05 next-gen 0.0.10/report/index.html">
+                <h4>next-gen 0.0.10</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../generator-benchmark/05 next-gen 0.0.10/report/pdf.svg">
+                                <img src="../../generator-benchmark/05 next-gen 0.0.10/report/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../generator-benchmark/05 next-gen 0.0.10/report/regression.svg">
+                                <img src="../../generator-benchmark/05 next-gen 0.0.10/report/regression_small.svg" alt="Regression" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../generator-benchmark/06 next-gen 0.0.10 boxed/report/index.html">
+                <h4>next-gen 0.0.10 boxed</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../generator-benchmark/06 next-gen 0.0.10 boxed/report/pdf.svg">
+                                <img src="../../generator-benchmark/06 next-gen 0.0.10 boxed/report/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../generator-benchmark/06 next-gen 0.0.10 boxed/report/regression.svg">
+                                <img src="../../generator-benchmark/06 next-gen 0.0.10 boxed/report/regression_small.svg" alt="Regression" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../generator-benchmark/07 genawaiter stack/report/index.html">
+                <h4>genawaiter stack</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../generator-benchmark/07 genawaiter stack/report/pdf.svg">
+                                <img src="../../generator-benchmark/07 genawaiter stack/report/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../generator-benchmark/07 genawaiter stack/report/regression.svg">
+                                <img src="../../generator-benchmark/07 genawaiter stack/report/regression_small.svg" alt="Regression" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../generator-benchmark/08 genawaiter rc/report/index.html">
+                <h4>genawaiter rc</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../generator-benchmark/08 genawaiter rc/report/pdf.svg">
+                                <img src="../../generator-benchmark/08 genawaiter rc/report/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../generator-benchmark/08 genawaiter rc/report/regression.svg">
+                                <img src="../../generator-benchmark/08 genawaiter rc/report/regression_small.svg" alt="Regression" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../generator-benchmark/09 genawaiter sync/report/index.html">
+                <h4>genawaiter sync</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../generator-benchmark/09 genawaiter sync/report/pdf.svg">
+                                <img src="../../generator-benchmark/09 genawaiter sync/report/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../generator-benchmark/09 genawaiter sync/report/regression.svg">
+                                <img src="../../generator-benchmark/09 genawaiter sync/report/regression_small.svg" alt="Regression" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../generator-benchmark/10 generator-rs local/report/index.html">
+                <h4>generator-rs local</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../generator-benchmark/10 generator-rs local/report/pdf.svg">
+                                <img src="../../generator-benchmark/10 generator-rs local/report/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../generator-benchmark/10 generator-rs local/report/regression.svg">
+                                <img src="../../generator-benchmark/10 generator-rs local/report/regression_small.svg" alt="Regression" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../generator-benchmark/11 generator-rs/report/index.html">
+                <h4>generator-rs</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../generator-benchmark/11 generator-rs/report/pdf.svg">
+                                <img src="../../generator-benchmark/11 generator-rs/report/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../generator-benchmark/11 generator-rs/report/regression.svg">
+                                <img src="../../generator-benchmark/11 generator-rs/report/regression_small.svg" alt="Regression" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../generator-benchmark/12 gen-z/report/index.html">
+                <h4>gen-z</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../generator-benchmark/12 gen-z/report/pdf.svg">
+                                <img src="../../generator-benchmark/12 gen-z/report/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../generator-benchmark/12 gen-z/report/iteration_times.svg">
+                                <img src="../../generator-benchmark/12 gen-z/report/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../generator-benchmark/13 corosensei/report/index.html">
+                <h4>corosensei</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../generator-benchmark/13 corosensei/report/pdf.svg">
+                                <img src="../../generator-benchmark/13 corosensei/report/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../generator-benchmark/13 corosensei/report/regression.svg">
+                                <img src="../../generator-benchmark/13 corosensei/report/regression_small.svg" alt="Regression" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <div id="footer">
+        <p>This report was generated by
+            <a href="https://github.com/bheisler/criterion.rs">Criterion.rs</a>, a statistics-driven benchmarking
+            library in Rust.</p>
+    </div>
+</body>
+
+</html>
