@@ -798,6 +798,60 @@ impl Board {
         }
     }
 
+    fn possible_regular_moves_corosensei(&self, player: Player) {
+        use corosensei::{CoroutineResult, ScopedCoroutine};
+
+        let mut generator = ScopedCoroutine::new(|yielder, _| {
+            /* Iterate through all tiles. */
+            for (orig_coords, tile) in self.iter_row_major() {
+                /* Check if the tile is a splittable stack of this player. */
+                if let Tile::Stack(p, stack_size) = tile {
+                    if p == player && stack_size > 1 {
+                        /* Iterate through all straight line directions. */
+                        for dir_offset in NEIGHBOR_OFFSETS {
+                            /* Move to a direction as far as there are empty tiles. */
+                            let mut coords = orig_coords;
+                            loop {
+                                /* Coordinates for the next tile in the direction.
+                                 * Hack: negative numbers cannot be added to a usize, so they are
+                                 * converted into usize with underflow and then added with overflow.
+                                 * Same as: let next_coords = coords + dir_offset */
+                                let next_coords = (
+                                    coords.0.wrapping_add(dir_offset.0 as usize),
+                                    coords.1.wrapping_add(dir_offset.1 as usize),
+                                );
+
+                                /* If next tile is empty, move to that tile. */
+                                if self[next_coords] == Tile::Empty {
+                                    coords = next_coords;
+                                } else {
+                                    break;
+                                }
+                            }
+                            /* Check if we actually found any empty tiles in the direction. */
+                            if coords != orig_coords {
+                                /* Iterate through all the ways to split the stack. */
+                                for split in 1..stack_size {
+                                    /* Create the next board. */
+                                    let mut next_board = self.clone();
+                                    next_board[coords] = Tile::Stack(player, split);
+                                    next_board[orig_coords] =
+                                        Tile::Stack(player, stack_size - split);
+
+                                    yielder.suspend(next_board);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        while let CoroutineResult::Yield(next_board) = generator.resume(()) {
+            black_box(next_board);
+        }
+    }
+
     async fn possible_regular_moves_gen_z(&self, player: Player) {
         use futures::stream::StreamExt;
         use gen_z::gen_z;
@@ -851,60 +905,6 @@ impl Board {
         let mut generator = Box::pin(generator);
 
         while let Some(next_board) = generator.next().await {
-            black_box(next_board);
-        }
-    }
-
-    fn possible_regular_moves_corosensei(&self, player: Player) {
-        use corosensei::{CoroutineResult, ScopedCoroutine};
-
-        let mut generator = ScopedCoroutine::new(|yielder, _| {
-            /* Iterate through all tiles. */
-            for (orig_coords, tile) in self.iter_row_major() {
-                /* Check if the tile is a splittable stack of this player. */
-                if let Tile::Stack(p, stack_size) = tile {
-                    if p == player && stack_size > 1 {
-                        /* Iterate through all straight line directions. */
-                        for dir_offset in NEIGHBOR_OFFSETS {
-                            /* Move to a direction as far as there are empty tiles. */
-                            let mut coords = orig_coords;
-                            loop {
-                                /* Coordinates for the next tile in the direction.
-                                 * Hack: negative numbers cannot be added to a usize, so they are
-                                 * converted into usize with underflow and then added with overflow.
-                                 * Same as: let next_coords = coords + dir_offset */
-                                let next_coords = (
-                                    coords.0.wrapping_add(dir_offset.0 as usize),
-                                    coords.1.wrapping_add(dir_offset.1 as usize),
-                                );
-
-                                /* If next tile is empty, move to that tile. */
-                                if self[next_coords] == Tile::Empty {
-                                    coords = next_coords;
-                                } else {
-                                    break;
-                                }
-                            }
-                            /* Check if we actually found any empty tiles in the direction. */
-                            if coords != orig_coords {
-                                /* Iterate through all the ways to split the stack. */
-                                for split in 1..stack_size {
-                                    /* Create the next board. */
-                                    let mut next_board = self.clone();
-                                    next_board[coords] = Tile::Stack(player, split);
-                                    next_board[orig_coords] =
-                                        Tile::Stack(player, stack_size - split);
-
-                                    yielder.suspend(next_board);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        });
-
-        while let CoroutineResult::Yield(next_board) = generator.resume(()) {
             black_box(next_board);
         }
     }
@@ -962,12 +962,12 @@ fn criterion_benchmark(c: &mut Criterion) {
     g.bench_function("11 generator-rs", |b| {
         b.iter(|| black_box(&board).possible_regular_moves_generator(black_box(player)))
     });
-    g.bench_function("12 gen-z", |b| {
+    g.bench_function("12 corosensei", |b| {
+        b.iter(|| black_box(&board).possible_regular_moves_corosensei(black_box(player)))
+    });
+    g.bench_function("13 gen-z", |b| {
         b.to_async(FuturesExecutor)
             .iter(|| black_box(&board).possible_regular_moves_gen_z(black_box(player)))
-    });
-    g.bench_function("13 corosensei", |b| {
-        b.iter(|| black_box(&board).possible_regular_moves_corosensei(black_box(player)))
     });
 }
 
