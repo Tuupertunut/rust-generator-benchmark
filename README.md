@@ -52,30 +52,30 @@ The test scenario used is a real world use case for generators. It is a move gen
 
 ![violin plot of results](report/generator-benchmark/report/violin.svg)
 
-| Implementation | Time* |
-|---|---|
-| no generator, just loops | 1.5417 μs |
-| no generator, just iterators | 1.7546 μs |
+| Implementation                   | Time\*    |
+| -------------------------------- | --------- |
+| no generator, just loops         | 1.5417 μs |
+| no generator, just iterators     | 1.7546 μs |
 | native rust generator (unstable) | 1.6797 μs |
-| next-gen 0.1.1 | 3.4451 μs |
-| next-gen 0.1.1 boxed | 3.4658 μs |
-| next-gen 0.0.10 | 2.4445 μs |
-| next-gen 0.0.10 boxed | 2.4403 μs |
-| genawaiter stack | 2.8838 μs |
-| genawaiter rc | 3.1552 μs |
-| genawaiter sync | 7.8809 μs |
-| generator-rs local | 9.7056 μs |
-| generator-rs | 9.7822 μs |
-| corosensei | 6.1294 μs |
-| gen-z | 20.874 μs |
+| next-gen 0.1.1                   | 3.4451 μs |
+| next-gen 0.1.1 boxed             | 3.4658 μs |
+| next-gen 0.0.10                  | 2.4445 μs |
+| next-gen 0.0.10 boxed            | 2.4403 μs |
+| genawaiter stack                 | 2.8838 μs |
+| genawaiter rc                    | 3.1552 μs |
+| genawaiter sync                  | 7.8809 μs |
+| generator-rs local               | 9.7056 μs |
+| generator-rs                     | 9.7822 μs |
+| corosensei                       | 6.1294 μs |
+| gen-z                            | 20.874 μs |
 
-**Time* means the time taken to generate all moves for one Battle Sheep board state.
+\*_Time_ means the time taken to generate all moves for one Battle Sheep board state.
 
-[Full report and numbers here](report/generator-benchmark/report/index.html)
+[Full report and numbers here](https://tuupertunut.github.io/rust-generator-benchmark/report/generator-benchmark/report/index.html)
 
 The most interesting result here is that the fastest stable generator implementation in Rust is an old version of next-gen! The newer version of next-gen is much slower and falls behind genawaiter. Being movable (so next-gen boxed and genawaiter rc) does not seem to affect performance much compared to non-movable generators.
 
-As expected, the Rust native implementation is faster than any library. It is notable that it is almost a *zero cost abstraction*, being very close in performance to not using a generator at all.
+As expected, the Rust native implementation is faster than any library. It is notable that it is almost a _zero cost abstraction_, being very close in performance to not using a generator at all.
 
 The stackful generators and the asynchronous gen-z suffer from having additional features that only slow them down in this simple test case. Out of the stackful generators it seems that corosensei is faster, although the stackfulness is not really used here.
 
