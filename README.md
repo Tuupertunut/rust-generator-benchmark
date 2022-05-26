@@ -50,7 +50,7 @@ The test scenario used is a real world use case for generators. It is a move gen
 
 ## Results
 
-![violin plot of results](report/generator-benchmark/report/violin.svg)
+![violin plot of results](violin-readme.svg)
 
 | Implementation                   | Time\*    |
 | -------------------------------- | --------- |
