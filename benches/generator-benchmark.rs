@@ -1,4 +1,4 @@
-#![feature(generators, generator_trait)]
+#![feature(coroutines, coroutine_trait)]
 
 use criterion::{
     async_executor::FuturesExecutor, black_box, criterion_group, criterion_main, Criterion,
@@ -246,10 +246,10 @@ impl Board {
     }
 
     fn possible_regular_moves_native(&self, player: Player) {
-        use std::ops::{Generator, GeneratorState};
+        use std::ops::{Coroutine, CoroutineState};
         use std::pin::Pin;
 
-        let mut generator = || {
+        let mut coroutine = || {
             /* Iterate through all tiles. */
             for (orig_coords, tile) in self.iter_row_major() {
                 /* Check if the tile is a splittable stack of this player. */
@@ -295,7 +295,7 @@ impl Board {
             }
         };
 
-        while let GeneratorState::Yielded(next_board) = Pin::new(&mut generator).resume(()) {
+        while let CoroutineState::Yielded(next_board) = Pin::new(&mut coroutine).resume(()) {
             black_box(next_board);
         }
     }
@@ -728,7 +728,7 @@ impl Board {
                                     next_board[orig_coords] =
                                         Tile::Stack(player, stack_size - split);
 
-                                    s.yield_(next_board);
+                                    s.yield_with(next_board);
                                 }
                             }
                         }
@@ -746,7 +746,7 @@ impl Board {
     fn possible_regular_moves_generator(&self, player: Player) {
         use generator::{done, Gn};
 
-        let generator = Gn::new_scoped(|mut s| {
+        let generator = Gn::new_scoped(move |mut s| {
             /* Iterate through all tiles. */
             for (orig_coords, tile) in self.iter_row_major() {
                 /* Check if the tile is a splittable stack of this player. */
@@ -783,7 +783,7 @@ impl Board {
                                     next_board[orig_coords] =
                                         Tile::Stack(player, stack_size - split);
 
-                                    s.yield_(next_board);
+                                    s.yield_with(next_board);
                                 }
                             }
                         }
